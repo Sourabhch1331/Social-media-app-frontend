@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import style from '../css-modules/Header.module.css';
 
 const Header = ()=>{
-    const userDetails = useContext(userContext);
+    // const userDetails = useContext(userContext);
     
     return (
         <header className={style.navBar}>
