@@ -1,0 +1,33 @@
+
+.navBar{
+    background-color: blue;
+    color: white;
+    height: 10vh;
+    display: flex;
+    justify-content:space-between;
+    align-items:center;
+    position: relative;
+    padding: 20px;
+}
+.navBar > ul {
+    display: flex;
+    list-style: none;
+}
+.navBar > ul > li {
+    padding: 5px;
+}
+a{  
+    color: black !important;
+    background-color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: white;
+    border-radius: 5rem;
+    border: 1px solid transparent;
+}
+a:hover{
+    color: white !important;
+    background-color: blue;
+    
+    border-color: white;
+}
