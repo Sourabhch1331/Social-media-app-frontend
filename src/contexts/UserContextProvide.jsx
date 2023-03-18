@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import {createContext,useState,useEffect} from 'react';
-
+import axios from 'axios';
 
 export const UserContext = createContext({user:null,isLogedIn:false,err:null,isPending:true});
 
@@ -11,30 +11,32 @@ export const UserContextProvider = ({children})=>{
 	const [err,setErr] = useState(null);
 	const [isPending,setIsPending] = useState(true);
 
-
+	// console.log("rendered")
 
 	useEffect(()=>{
 		const controller = new AbortController();
 		const signal = controller.signal;
 
-
 		const getUser= ()=>{
-			const url=`https://wild-gray-parrot-gear.cyclic.app/api/v1/users/me`;
-
+			const url=`https://socionet.onrender.com/api/v1/user/me`;
+			
 			fetch(url, {
 				method: 'GET',
+				credentials:'include',
 				signal
 			})
 			.then(res => res.json())
 			.then(res =>{
 				console.log(res);
 				if(res.status !== "fail"){
-					setIsLogedIn(isLogedIn => true);
+					setIsLogedIn(true);
 					setUser(user => res.data.user);	
+				}else{
+					throw new Error(res.message);
 				}
 			})
 			.catch(error=>{
-				console.log(error);
+				console.log("error",error);
 				if(error.name !== 'AbortError'){
 					setErr(err => error);
 				}
@@ -50,8 +52,18 @@ export const UserContextProvider = ({children})=>{
 
 	},[]);
 
+	const values={
+		user,
+		setUser,
+		isLogedIn,
+		setIsLogedIn,
+		err,
+		setErr
+	}
+	// console.log(values);
+
     return (
-        <UserContext.Provider value={{user,isLogedIn,err,isPending}}> {children} </UserContext.Provider>
+        <UserContext.Provider value={values}> {children} </UserContext.Provider>
     );
 }
 

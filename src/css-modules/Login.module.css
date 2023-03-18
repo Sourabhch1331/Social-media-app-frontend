@@ -1,0 +1,39 @@
+
+
+.form{
+    margin-top: 40px;
+    background-image: linear-gradient(to right,rgb(44, 98, 191), rgb(4, 41, 126)); 
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    color: white;
+    
+    box-shadow: 0px 0px 5px black;
+}
+
+.form > input {
+    padding: 5px;
+    border: none    ;
+    margin-bottom: 20px;
+    margin-top: 2px;
+    background-color:white;
+}
+.form > button {
+    background-color: white;
+    padding: 8px 0px 8px 0px;
+}
+
+.form > h2 {
+    margin: 0 auto;
+}
+.photSelect{
+    color: black;
+}
+
+.form > button:hover {
+    transform: scale(1.05);
+    border-radius: 5px;
+    transition-duration: 100ms;
+}
