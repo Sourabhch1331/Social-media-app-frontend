@@ -9,6 +9,8 @@
     align-items:center;
     position: relative;
     padding: 20px;
+    position: sticky;
+    top: 0;
 }
 .navBar > ul {
     display: flex;
@@ -32,9 +34,33 @@ a,.logoutBtn{
     display:flex;
     align-items:center;
 }
+.userWrapper{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items: center;
+    
+}
 .userPhoto{
     width: 30px;
     height: 30px;
     border-radius:50%;  
     margin-right: 10px;
+}
+.logo{
+    height: 80px;
+    pointer-events: none;
+}
+
+@media screen and (max-width: 600px) {
+    .logo{
+        height: 40px;
+        pointer-events: none;
+    }
+}
+@media screen and (max-width: 400px) {
+    .logo{
+        height: 30px;
+        pointer-events: none;
+    }
 }

@@ -2,8 +2,9 @@
 import {useState,useEffect} from 'react';
 import {Route,Routes} from 'react-router-dom';
 import { useContext } from 'react';
-import './css-modules/App.module.css';
+import style from'./css-modules/App.module.css';
 import Header from './components/Header';
+import SideNavBar from './components/SideNavBar';
 import LogIn from './components/authComponents/Login';
 import SignUp from './components/authComponents/SignUp';
 import {UserContextProvider} from './contexts/UserContextProvide';
@@ -15,13 +16,17 @@ function App() {
 		<UserContextProvider>
 			<div className="App">
 				<Header/>
-				{/* <NavBar/> */}
+				<div className={style.main}>
+					<SideNavBar />
+					<div className={style.hero}>
+						<Routes>
+							{/* <Route path='/' element={<Home/>} /> */}
+							<Route path='/login' element={<LogIn/>} />
+							<Route path='/signup' element={<SignUp/>} />
+						</Routes>
+					</div>
+				</div>
 				
-				<Routes>
-					{/* <Route path='/' element={<Home/>} /> */}
-					<Route path='/login' element={<LogIn/>} />
-					<Route path='/signup' element={<SignUp/>} />
-				</Routes>
 			</div>
 		</UserContextProvider>
 		

@@ -1,2 +1,33 @@
 
 
+.main {
+    display: flex;
+    /* background-color: aqua; */
+    width: 100vw;
+}
+
+.hero{
+    /* background-color:yellow; */
+    min-height: 90vh;
+    width:calc(100% - 120px);
+    margin-left: 120px;
+    display: flex;
+    justify-content:center;
+    padding-top: 30px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 400px) {
+    
+    .hero{
+        width:calc(100% - 80px);
+        margin-left: 80px;
+    }
+}
+@media screen and (max-width: 350px) {
+    
+    .hero{
+        width:calc(100% - 50px);
+        margin-left: 50px;
+    }
+}

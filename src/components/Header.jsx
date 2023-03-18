@@ -13,8 +13,8 @@ const Header = ()=>{
     
     return (
         <header className={style.navBar}>
-            <span></span>
-            <h2>Socionet</h2>
+            
+            <img className={style.logo} src="https://res.cloudinary.com/dtf4qywla/image/upload/v1679143148/image-removebg-preview_ull0go.png" alt="logo" />
             {!isLogedIn ? <AuthBar />:<UserIcon {...user}/> }
 
         </header>
@@ -55,7 +55,10 @@ const UserIcon = (props)=> {
 
     return (
         <div className={style.userIcon}>
-            <img className={style.userPhoto} src={props.photo} alt="User_photo" />
+            <div className={style.userWrapper}>
+                <img className={style.userPhoto} src={props.photo} alt="User_photo" />
+                <span>{props.username}</span>
+            </div>
             <button className={style.logoutBtn} onClick={logOut}>LogOut</button>
         </div>
     )

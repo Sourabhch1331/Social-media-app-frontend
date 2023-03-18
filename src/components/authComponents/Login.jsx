@@ -1,8 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { useState, useContext, useEffect} from "react";
 import {UserContext} from '../../contexts/UserContextProvide';
-import style from '../../css-modules/Login.module.css';
+import style from '../../css-modules/Form.module.css';
 import swal from 'sweetalert';
+import {Link} from 'react-router-dom';
+
 
 const Login = ()=>{
     const [formData,setFormData] = useState({email:"",password:""});
@@ -59,7 +61,7 @@ const Login = ()=>{
     };
 
     return (
-        <>
+        <div className={style.formWrapper}>
             <form className={style.form} onSubmit={handleSubmit}>
                 <h2>Login Form</h2>
                 Email
@@ -78,7 +80,15 @@ const Login = ()=>{
                 />
                 <button type="submit">{!isPending ? 'Login':'LogingIn..'}</button>
             </form>
-        </>
+        
+            <div className={style.already}>
+                <div className={style.flex}>
+                    <div className={style.mg}>Don't have a Account ?</div>
+                    <Link className={style.noStyle} to='/signup'>Click Here to Register</Link>
+                </div>
+            </div>
+        </div>
+    
     )
 
 }

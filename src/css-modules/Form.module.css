@@ -1,0 +1,103 @@
+
+
+.formWrapper{
+    display: flex;
+    height: max-content;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.484);
+}
+
+.already{
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    background-image: linear-gradient(to bottom,rgb(44, 98, 191), rgb(4, 41, 126)); 
+    color: white;
+    padding:40px;
+}
+
+.form{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: max-content;
+    color: black;
+    border-radius: 5px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .form{
+        width: 300px;
+        margin-top: 20px;
+    }
+    .formWrapper{
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media screen and (max-width: 440px) {
+    .form{
+        width: 250px;
+        margin-top: 20px;
+    }
+    .formWrapper{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.form > input {
+    padding: 5px;
+    border: none    ;
+    margin-bottom: 20px;
+    margin-top: 2px;
+    border-radius:5px;
+    background-color:rgba(236, 243, 242, 0.551);
+}
+.form > button {
+    background-color: rgb(44, 98, 191);
+    color: white;
+    width: 150px;
+    padding: 10px 0px 10px 0px;
+    margin:auto;
+    /* padding: 5px 20px 5px 20px; */
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.form > h2 {
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+.photSelect{
+    color: rgba(0, 0, 0, 0.579);
+    
+}
+
+.form > button:hover {
+    transform: scale(1.2);
+    border-radius: 15px;
+    transition-duration: 400ms;
+    background-color: rgb(44, 98, 191);
+    color: white;
+}
+
+
+.mg{
+    margin-bottom: 10px;
+}
+
+.flex{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+}
+
+.noStyle{
+    background-color:transparent;
+    border-radius:20px;
+    background-color: white;
+    margin: auto;
+}

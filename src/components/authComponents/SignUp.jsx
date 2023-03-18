@@ -2,7 +2,8 @@
 import { useState, useContext, useEffect} from "react";
 import swal from 'sweetalert';
 import {UserContext} from '../../contexts/UserContextProvide';
-import style from '../../css-modules/Login.module.css';
+import style from '../../css-modules/Form.module.css';
+import {Link} from 'react-router-dom';
 
 const SignUp = ()=>{
     const defaultValues = {
@@ -75,18 +76,17 @@ const SignUp = ()=>{
     };
 
     return (
-        <>
+        <div className={style.formWrapper}>
             <form className={style.form} onSubmit={handleSubmit}>
                 <h2>Signup Form</h2>
-                Name
+                
                 <input 
                     type="text" 
-                    placeholder="Your Name"
+                    placeholder="Name"
                     name="name"
                     required
                     onChange={handleChange}
                 />
-                User Name
                 <input 
                     type="text" 
                     placeholder="User Name"
@@ -94,7 +94,6 @@ const SignUp = ()=>{
                     required
                     onChange={handleChange}
                 />
-                Email
                 <input 
                     type="email" 
                     placeholder="example@gmail.com"
@@ -102,7 +101,6 @@ const SignUp = ()=>{
                     required
                     onChange={handleChange}
                 />
-                Password
                 <input 
                     type="password" 
                     placeholder="password"
@@ -110,7 +108,7 @@ const SignUp = ()=>{
                     required
                     onChange={handleChange}
                 />
-                Confirm Password
+                
                 <input 
                     type="password" 
                     placeholder="password confirm"
@@ -118,7 +116,7 @@ const SignUp = ()=>{
                     required
                     onChange={handleChange}
                 />
-                Upload Profile Photo
+                Profile Photo
                 <input 
                     className={style.photSelect}
                     type="file" 
@@ -128,8 +126,15 @@ const SignUp = ()=>{
                 />
 
                 <button type="submit">{!isPending ? 'SignUp':'SigingUp..'}</button>
+                
             </form>
-        </>
+            <div className={style.already}>
+                <div className={style.flex}>
+                    <div className={style.mg}>Already have a Account ?</div>
+                    <Link className={style.noStyle} to='/login'>Click Here to Login</Link>
+                </div>
+            </div>
+        </div>
     )
 
 }
