@@ -2,12 +2,11 @@
 
 .main {
     display: flex;
-    /* background-color: aqua; */
     width: 100vw;
 }
 
 .hero{
-    /* background-color:yellow; */
+
     min-height: 90vh;
     width:calc(100% - 120px);
     margin-left: 120px;

@@ -4,6 +4,7 @@ import swal from 'sweetalert';
 import {UserContext} from '../../contexts/UserContextProvide';
 import style from '../../css-modules/Form.module.css';
 import {Link} from 'react-router-dom';
+import Loading from "../Loading";
 
 const SignUp = ()=>{
     const defaultValues = {
@@ -57,7 +58,7 @@ const SignUp = ()=>{
 			})
             .then(res => res.json())
             .then(res=>{
-                console.log(res);
+                // console.log(res);
                 if(!res.status || res.status !== "success"){
                     setErr(err => res.message || "something went wrong!");
                     swal(res.message);
@@ -124,8 +125,8 @@ const SignUp = ()=>{
                     name="photo"
                     onChange={handlePhotoSelection}
                 />
-
-                <button type="submit">{!isPending ? 'SignUp':'SigingUp..'}</button>
+                
+                {!isPending ? <button type="submit">SignUp</button>:<Loading/>}
                 
             </form>
             <div className={style.already}>

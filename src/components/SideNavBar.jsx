@@ -1,21 +1,34 @@
 /* eslint-disable no-unused-vars */
-
+import { useState } from 'react';
 import style from '../css-modules/SideBar.module.css';
 import {Link} from 'react-router-dom';
 
 
 const SideNavBar = ()=> {
+    const [active,setActive] = useState(null);
     
+    // const 
+
+    const handleClick =(event) => {
+        if(active){
+            let curr=active;
+            curr.classList.remove(style.whiteBg);
+        }
+        event.target.classList.add(style.whiteBg);
+        
+        setActive(active => event.target);
+    }
+
     return (
         <div className={style.navBar}>
             <ul>
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to='/serach'>Search</Link></li>
-                <li><Link to='/post'>Create Post</Link></li>
-                <li><Link to='/my-post'>My post</Link></li>
-                <li><Link to='/my-profile'>My profile</Link></li>
-                <li><Link to='/about'>About</Link></li>
-            
+                <li><Link onClick={handleClick} to='/'>Home</Link></li>
+                <li><Link onClick={handleClick} to='/serach'>Search</Link></li>
+                <li><Link onClick={handleClick} to='/post'>Create Post</Link></li>
+                <li><Link onClick={handleClick} to='/my-post'>My post</Link></li>
+                <li><Link onClick={handleClick} to='/my-profile'>My profile</Link></li>
+                <li><Link onClick={handleClick} to='/about'>About</Link></li>
+                
             </ul>
         </div>
     )

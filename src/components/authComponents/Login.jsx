@@ -1,32 +1,30 @@
 /* eslint-disable no-unused-vars */
-import { useState, useContext, useEffect} from "react";
+import { useState, useContext, useRef} from "react";
+import {useNavigate} from 'react-router-dom';
+
 import {UserContext} from '../../contexts/UserContextProvide';
 import style from '../../css-modules/Form.module.css';
 import swal from 'sweetalert';
 import {Link} from 'react-router-dom';
-
+import Loading from '../Loading';
 
 const Login = ()=>{
-    const [formData,setFormData] = useState({email:"",password:""});
+    const emailRef=useRef("")
+    const passwordRef=useRef("")
+
     const [isPending,setIsPending] = useState(false);
 
-    const {setErr} = useContext(UserContext);
+    const navigate=useNavigate();
 
-    const handleChange = (event) => {
-        setFormData(prevData => {
-            return {
-                ...prevData,
-                [event.target.name]:event.target.value
-            }
-        });
-    };
+    const {setErr,setIsLogedIn} = useContext(UserContext);
 
     const handleSubmit = async (event)=>{
+        
         event.preventDefault();
         setIsPending(true); 
         const data={
-            email: formData.email.trim(),
-            password: formData.password.trim()
+            email: emailRef.current.value.trim(),
+            password: passwordRef.current.value.trim()
         };
         
         try{
@@ -48,7 +46,8 @@ const Login = ()=>{
                     setErr(err => res.message || "something went wrong!");
                 }
                 else{
-                    window.location.href='/'
+                    setIsLogedIn((prev) => true);
+                    navigate('/');
                 }
                 setIsPending(false); 
             });
@@ -67,18 +66,20 @@ const Login = ()=>{
                 Email
                 <input 
                     type="email" 
+                    ref={emailRef}
                     placeholder="example@gmail.com"
                     name="email"
-                    onChange={handleChange}
+                    // onChange={handleChange}
                 />
                 Password
                 <input 
                     type="password" 
+                    ref={passwordRef}
                     placeholder="**********"
                     name="password"
-                    onChange={handleChange}
+                    // onChange={handleChange}
                 />
-                <button type="submit">{!isPending ? 'Login':'LogingIn..'}</button>
+                {!isPending ? <button type="submit">Login</button>:<Loading/>}
             </form>
         
             <div className={style.already}>
