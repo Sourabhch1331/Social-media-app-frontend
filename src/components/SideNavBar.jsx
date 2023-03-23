@@ -22,8 +22,8 @@ const SideNavBar = ()=> {
     return (
         <div className={style.navBar}>
             <ul>
-                <li><Link onClick={handleClick} to='/'>Home</Link></li>
-                <li><Link onClick={handleClick} to='/serach'>Search</Link></li>
+                <li><Link onClick={handleClick} to='/'>Feed</Link></li>
+                <li><Link onClick={handleClick} to='/all-users'>All Users</Link></li>
                 <li><Link onClick={handleClick} to='/post'>Create Post</Link></li>
                 <li><Link onClick={handleClick} to='/my-post'>My post</Link></li>
                 <li><Link onClick={handleClick} to='/my-profile'>My profile</Link></li>

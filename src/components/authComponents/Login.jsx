@@ -47,7 +47,7 @@ const Login = ()=>{
                 }
                 else{
                     setIsLogedIn((prev) => true);
-                    navigate('/');
+                    window.location.href='/';
                 }
                 setIsPending(false); 
             });

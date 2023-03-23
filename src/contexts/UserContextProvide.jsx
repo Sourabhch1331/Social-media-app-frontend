@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import {createContext,useState,useEffect} from 'react';
-import axios from 'axios';
 
 export const UserContext = createContext({user:null,isLogedIn:false,err:null,isPending:true});
 
@@ -10,8 +9,6 @@ export const UserContextProvider = ({children})=>{
 	const [isLogedIn,setIsLogedIn] = useState(false);
 	const [err,setErr] = useState(null);
 	const [isPending,setIsPending] = useState(true);
-
-	// console.log("rendered")
 
 	useEffect(()=>{
 		const controller = new AbortController();
@@ -27,7 +24,6 @@ export const UserContextProvider = ({children})=>{
 			})
 			.then(res => res.json())
 			.then(res =>{
-				console.log(res);
 				if(res.status !== "fail"){
 					setIsLogedIn(true);
 					setUser(user => res.data.user);	
@@ -60,7 +56,6 @@ export const UserContextProvider = ({children})=>{
 		err,
 		setErr
 	}
-	// console.log(values);
 
     return (
         <UserContext.Provider value={values}> {children} </UserContext.Provider>

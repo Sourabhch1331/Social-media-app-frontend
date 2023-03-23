@@ -9,8 +9,6 @@ import {UserContext} from '../contexts/UserContextProvide';
 const Header = ()=>{
     const {isLogedIn,user} = useContext(UserContext);
     
-    // console.log(UserContext);
-    
     return (
         <header className={style.navBar}>
             
@@ -49,7 +47,7 @@ const UserIcon = (props)=> {
             })
         }
         catch(err){
-            console.log(err);
+            console.log("error 💥",err);
         }
     };
 

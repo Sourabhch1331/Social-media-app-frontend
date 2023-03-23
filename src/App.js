@@ -8,6 +8,7 @@ import SideNavBar from './components/SideNavBar';
 import LogIn from './components/authComponents/Login';
 import SignUp from './components/authComponents/SignUp';
 import AllPost from './components/AllPost.jsx';
+import AllUsers from './components/AllUsers.jsx';
 import {UserContextProvider} from './contexts/UserContextProvide';
 
 
@@ -22,6 +23,7 @@ function App() {
 					<div className={style.hero}>
 						<Routes>
 							<Route path='/' element={<AllPost/>} />
+							<Route path='/all-users' element={<AllUsers/>} />
 							<Route path='/login' element={<LogIn/>} />
 							<Route path='/signup' element={<SignUp/>} />
 						</Routes>

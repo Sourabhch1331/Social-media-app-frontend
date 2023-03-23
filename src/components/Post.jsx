@@ -1,8 +1,7 @@
 /* eslint-disable no-unused-vars */
 import style from '../css-modules/Post.module.css';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faThumbsUp as dark } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
+import {UserContext} from '../contexts/UserContextProvide';
+import {useContext, useEffect, useRef, useState } from 'react';
 import swal from 'sweetalert';
 
 
@@ -21,6 +20,7 @@ const Post=(props)=>{
                 <Like {...props} />
                 <div className={style.commentIcon} onClick={()=> setActive(prev => !prev)}></div>
             </div>
+            
             {active && <Comments {...props}/>}
         </div>   
     )
@@ -74,19 +74,65 @@ const Like =(props)=>{
 
 const Comments = (props) => {
 
-    const AllComments=props.comments.map(curr => {
-        return <Comment comment={curr.comment} key={curr._id}/>
-    })
+    const commentRef=useRef(null);
+    const {user} = useContext(UserContext);
+
+    const [comments,setComments]=useState(props.comments);
+    
+
+
+    const handleSubmit = (e)=>{
+        e.preventDefault();
+        if(commentRef.current.value === "") return;
+
+        const curr={
+            user:{
+                photo:user.photo,
+                username:user.username,
+            },
+            _id:Date.now(),
+            comment: commentRef.current.value
+        }
+
+        const url=`https://socionet.onrender.com/api/v1/post/comment/${props._id}`;
+			
+        fetch(url, {
+            method: 'POST',
+            credentials:'include',
+            body: JSON.stringify({comment:commentRef.current.value}),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8'
+            }
+        })
+        .then(res => res.json())
+        .then(res =>{
+            setComments(prev => [curr,...prev]);
+        })
+        .catch(error=>{
+            console.log("error 💥",error);
+        });
+    }
+
+    const AllComments=comments.map(curr => {
+        return <Comment 
+                    photo = {curr.user.photo} 
+                    comment={curr.comment} 
+                    key={curr._id}
+                    username={curr.user.username}
+                />
+    });
 
     return (
         <>
             <div className={style.commentWrapper}>
-                {AllComments}
+                {AllComments.length ? AllComments:<span style={{marginLeft:'15px'}}>No comments yet!</span>}
             </div>
-            <form >
-                <input type="text"/>
-                <button type="submit">comment</button>
-            </form>
+            {user &&
+                <form className={style.commentForm} onSubmit={handleSubmit}>
+                    <input ref={commentRef} type="text"/>
+                    <button className={style.btn} type="submit">comment</button>
+                </form>
+            }
         </>
     )
 }
@@ -94,6 +140,10 @@ const Comments = (props) => {
 const Comment = (props) => {
     return (
         <div className={style.comment}>
+            <div>
+                <img src={props.photo} alt="" />
+                <span>{props.username}</span>
+            </div>
             <span>{props.comment}</span>
         </div>
     )

@@ -9,7 +9,7 @@ import Loading from './Loading';
 
 const AllPost = ()=> {
 
-    const [isPending,setIsPending] = useState(false);
+    const [isPending,setIsPending] = useState(true);
     const [posts,setPosts] = useState([]);
     
     const {user,isLogedIn} = useContext(UserContext);
@@ -18,8 +18,6 @@ const AllPost = ()=> {
     useEffect(()=>{
 		const controller = new AbortController();
 		const signal = controller.signal;
-
-        setIsPending(isPending => true);
 
 		const getPost= ()=>{
             const endPoint= isLogedIn ? 'getAllPost':'getSamplePost';
@@ -49,8 +47,6 @@ const AllPost = ()=> {
 
 	},[isLogedIn]);
 
-	console.log(posts);
-
 	
 
     const allPost=posts.map(post =>{
@@ -59,7 +55,9 @@ const AllPost = ()=> {
     });
     
     return (
-        <>{isPending ? <Loading/>: <div className={style.postWrapper}>{allPost}</div>}</>
+        <>
+			{isPending ? <Loading/>: <div className={style.postWrapper}>{allPost}</div>}
+		</>
     )
 }
 

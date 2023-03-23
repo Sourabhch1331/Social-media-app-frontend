@@ -58,7 +58,6 @@ const SignUp = ()=>{
 			})
             .then(res => res.json())
             .then(res=>{
-                // console.log(res);
                 if(!res.status || res.status !== "success"){
                     setErr(err => res.message || "something went wrong!");
                     swal(res.message);
